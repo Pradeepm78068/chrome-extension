@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Notes with AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="button-container">
+    <button id="quickNotesBtn">Quick Notes</button>
+    <button id="previousNotesBtn">Previous Notes</button>
+  </div>
+
+  <!-- Quick Notes Section -->
+  <div id="quickNotesSection">
+    <div id="noteInput" contenteditable="true" class="note-input" placeholder="Type your note..."></div>
+    <div class="buttondiv">
+      <button id="saveBtn">
+        <img id="saveIcon" src="assets/save.png" alt="Save" style="width: 20px; height: 20px;">
+        Save Note
+      </button>
+      <button id="aiSuggestBtn">Get AI Suggestion</button>
+    </div>
+  </div>
+
+  <!-- Previous Notes Section -->
+  <div id="previousNotesSection">
+    <ul id="noteList"></ul>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

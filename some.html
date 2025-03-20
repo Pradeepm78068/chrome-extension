@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Pane Description and Solution</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+        .header button {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+        .header button.active {
+            background-color: #000;
+        }
+        .content {
+            display: flex;
+            flex-grow: 1;
+        }
+        .section {
+            flex: 1;
+            display: none;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f4f4f4;
+        }
+        .section.active {
+            display: block;
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button onclick="showSection('description')" id="desc-btn" class="active">Quick Notes</button>
+        <button onclick="showSection('solution')" id="sol-btn">Previous Notes</button>
+    </div>
+    <div class="content">
+        <div class="section active" id="description">
+            <h2>Description</h2>
+            <p>This is the description section. It explains the problem or topic in detail.</p>
+        </div>
+        <div class="section" id="solution">
+            <h2>Solution</h2>
+            <p>This is the solution section. It provides a detailed solution or approach to the described problem.</p>
+        </div>
+    </div>
+    <script>
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+            document.querySelectorAll('.header button').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(section).style.display = 'block';
+            document.getElementById(section === 'description' ? 'desc-btn' : 'sol-btn').classList.add('active');
+        }
+    </script>
+</body>
+</html>

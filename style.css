@@ -1,0 +1,191 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  width: 300px;
+  padding: 20px;
+  background-color: #131413;
+  color: aliceblue;
+}
+body {
+  width: 300px; /* Default popup width, adjust as needed */
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  position: relative;
+  height: 30px; /* Space for the button */
+}
+
+.zoom-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.note-input {
+  width: 100%;
+  height: 100px; /* Default height */
+  border: 1px solid #ccc;
+  padding: 8px;
+  overflow: auto;
+  white-space: pre-wrap;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: all 0.3s ease; /* Smooth resize animation */
+}
+
+.note-input.maximized {
+  height: 400px; /* Adjust to your max desired height */
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: white;
+  padding: 40px 10px 10px 10px; /* Extra padding to avoid overlap with button */
+}
+
+/* Existing styles */
+.note-input:empty:before {
+  content: attr(placeholder);
+  color: #aaa;
+}
+
+#quickNotesSection, #previousNotesSection {
+  padding: 10px;
+}
+
+button {
+  margin: 5px;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.note-input {
+  width: 100%; /* Adjust as needed */
+  height: 100px; /* Adjust as needed */
+  border: 1px solid #ccc;
+  padding: 8px;
+  overflow: auto;
+  white-space: pre-wrap; /* Preserve line breaks and spacing */
+  font-family: inherit; /* Match surrounding text */
+}
+
+.note-input:empty:before {
+  content: attr(placeholder);
+  color: #aaa;
+}
+/* Section Containers */
+#quickNotesSection, #previousNotesSection {
+  width: 100%;
+}
+
+/* Hide sections by default */
+#quickNotesSection {
+  display: block; /* Show Quick Notes by default */
+}
+
+#previousNotesSection {
+  display: none; /* Hide Previous Notes by default */
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  height: 100px;
+}
+
+/* Button Styles */
+button {
+  background-color: #131413;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.buttondiv {
+  display: flex;
+  flex-direction: row;
+}
+
+button img {
+  margin-right: 5px;
+}
+
+button:hover {
+  background-color: #987610;
+}
+
+/* Active Button Style */
+button.active {
+  background-color: #987610;
+}
+
+/* Notes List */
+#noteList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Individual Note Items */
+#noteList li {
+  background-color: #595353;
+  padding: 10px;
+  list-style-type: none;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  word-break: break-word;
+}
+
+/* Note Text */
+#noteList li p {
+  margin: 0 0 5px 0;
+  color: white;
+}
+
+/* Note URL */
+#noteList li small {
+  font-size: 12px;
+  color: #ddd;
+  margin-bottom: 5px;
+}
+
+/* Delete Button */
+.delete-btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  align-self: flex-end;
+  padding: 5px;
+}
+
+.delete-btn img {
+  width: 20px;
+  height: 20px;
+}textarea {
+  width: 100%;
+  height: 100px;
+  white-space: pre-wrap; /* Preserves line breaks and spacing */
+  font-family: monospace; /* Optional: improves readability for structured text */
+}
