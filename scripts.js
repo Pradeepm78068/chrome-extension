@@ -1,5 +1,5 @@
 // API Key (for now, replace with secure storage in production)
-const API_KEY =<Enter_your_api_key>;//enter your api key
+const API_KEY = "AIzaSyAFy1PE-NhZsIslFeRTvQwPN1XcjdQdAF8"; 
 
 async function fetchAIResponse(promptText) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
@@ -171,26 +171,30 @@ document.addEventListener("DOMContentLoaded", function () {
     aiSuggestBtn.addEventListener("click", async function () {
         console.log("AI Suggestion button clicked.");
         aiSuggestBtn.textContent = "Loading...";
-
+        aiSuggestBtn.classList.add("loading"); // Add loading class to button
+        noteInput.classList.add("loading-glow"); // Add glow effect to noteInput
+    
         const userNote = noteInput.innerHTML.trim();
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             if (!tabs[0]) {
                 console.error("No active tab found.");
                 aiSuggestBtn.textContent = "Get AI Suggestion";
+                aiSuggestBtn.classList.remove("loading"); // Remove loading class from button
+                noteInput.classList.remove("loading-glow"); // Remove glow effect
                 noteInput.innerHTML = "Error: Could not access the current tab.";
                 return;
             }
-
+    
             chrome.tabs.sendMessage(tabs[0].id, { action: "getPageInfo" }, async (response) => {
                 if (chrome.runtime.lastError) {
                     console.error("Error getting page info:", chrome.runtime.lastError.message);
                     response = { title: "Unknown", url: "Unknown", selectedText: "None" };
                 }
                 console.log("Page info:", response);
-
+    
                 const isContextEmpty = response.title === "Unknown" && response.url === "Unknown" && response.selectedText === "None";
                 let prompt;
-
+    
                 if (userNote) {
                     if (isContextEmpty) {
                         prompt = `Enhance the following note by improving its clarity, adding relevant details, or rephrasing it for better understanding:\n- User's Note: ${userNote}\nNote: No page context is available, so provide a general enhancement.`;
@@ -205,14 +209,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
                 console.log("Prompt:", prompt);
-
+    
                 const aiSuggestion = await fetchAIResponse(prompt);
                 console.log("Raw AI suggestion:", aiSuggestion);
-
+    
                 const formattedSuggestion = formatAIResponse(aiSuggestion);
                 console.log("Formatted suggestion:", formattedSuggestion);
-
+    
                 aiSuggestBtn.textContent = "Get AI Suggestion";
+                aiSuggestBtn.classList.remove("loading"); // Remove loading class from button
+                noteInput.classList.remove("loading-glow"); // Remove glow effect
                 noteInput.innerHTML = formattedSuggestion;
             });
         });

@@ -1,19 +1,18 @@
 /* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif; /* Modern font */
   width: 300px;
   padding: 20px;
-  background-color: #131413;
-  color: aliceblue;
-}
-body {
-  width: 300px; /* Default popup width, adjust as needed */
-  font-family: Arial, sans-serif;
+  background-color: #222831; /* Dark Gray */
+  color: #EEEEEE; /* Light Gray */
+  margin: 0;
+  box-sizing: border-box;
 }
 
+/* Header */
 .header {
   position: relative;
-  height: 30px; /* Space for the button */
+  height: 30px;
 }
 
 .zoom-btn {
@@ -24,43 +23,64 @@ body {
   border: none;
   cursor: pointer;
   padding: 0;
+  color: #00ADB5; /* Teal */
+  transition: color 0.2s ease;
 }
 
+.zoom-btn:hover {
+  color: #393E46; /* Slate Gray */
+}
+
+/* Note Input */
 .note-input {
   width: 100%;
-  height: 100px; /* Default height */
-  border: 1px solid #ccc;
-  padding: 8px;
+  height: 100px;
+  border: 1px solid #393E46;
+  padding: 10px;
   overflow: auto;
   white-space: pre-wrap;
   font-family: inherit;
   box-sizing: border-box;
-  transition: all 0.3s ease; /* Smooth resize animation */
+  transition: all 0.3s ease;
+  background-color: #393E46;
+  color: #EEEEEE;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  resize: none;
+  margin-bottom: 15px; /* Added spacing */
 }
 
 .note-input.maximized {
-  height: 400px; /* Adjust to your max desired height */
+  height: 400px;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  background: white;
-  padding: 40px 10px 10px 10px; /* Extra padding to avoid overlap with button */
+  background: #393E46; /* Slate Gray */
+  padding: 40px 15px 15px 15px;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-/* Existing styles */
 .note-input:empty:before {
   content: attr(placeholder);
-  color: #aaa;
+  color: #00ADB5; /* Teal */
+  font-style: italic;
 }
 
+/* Section Containers */
 #quickNotesSection, #previousNotesSection {
-  padding: 10px;
+  padding: 10px 0;
+  width: 100%;
 }
 
-button {
-  margin: 5px;
+#quickNotesSection {
+  display: block;
+}
+
+#previousNotesSection {
+  display: none;
 }
 
 /* Button Container */
@@ -68,72 +88,43 @@ button {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  margin-bottom: 10px;
-}
-.note-input {
-  width: 100%; /* Adjust as needed */
-  height: 100px; /* Adjust as needed */
-  border: 1px solid #ccc;
-  padding: 8px;
-  overflow: auto;
-  white-space: pre-wrap; /* Preserve line breaks and spacing */
-  font-family: inherit; /* Match surrounding text */
-}
-
-.note-input:empty:before {
-  content: attr(placeholder);
-  color: #aaa;
-}
-/* Section Containers */
-#quickNotesSection, #previousNotesSection {
-  width: 100%;
-}
-
-/* Hide sections by default */
-#quickNotesSection {
-  display: block; /* Show Quick Notes by default */
-}
-
-#previousNotesSection {
-  display: none; /* Hide Previous Notes by default */
-}
-
-/* Textarea */
-textarea {
-  width: 100%;
-  height: 100px;
+  margin-bottom: 15px;
 }
 
 /* Button Styles */
 button {
-  background-color: #131413;
-  color: white;
+  background-color: #00ADB5; /* Teal */
+  color: #EEEEEE; /* Light Gray */
   border: none;
-  padding: 10px;
-  margin: 5px;
+  padding: 10px 15px;
+  margin: 5px 0;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .buttondiv {
   display: flex;
   flex-direction: row;
+  gap: 10px;
 }
 
 button img {
-  margin-right: 5px;
+  margin-right: 8px;
+  /* filter: brightness(0) invert(1); White icons */
 }
 
 button:hover {
-  background-color: #987610;
+  background-color: #393E46; /* Slate Gray */
+  transform: translateY(-1px);
 }
 
-/* Active Button Style */
 button.active {
-  background-color: #987610;
+  background-color: #393E46; /* Slate Gray */
 }
 
 /* Notes List */
@@ -144,31 +135,45 @@ button.active {
   width: 100%;
 }
 
-/* Individual Note Items */
 #noteList li {
-  background-color: #595353;
-  padding: 10px;
-  list-style-type: none;
-  margin: 5px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  background-color: #393E46; /* Slate Gray */
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #00ADB5; /* Teal */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   word-break: break-word;
+  transition: transform 0.2s ease;
 }
 
-/* Note Text */
+#noteList li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
 #noteList li p {
-  margin: 0 0 5px 0;
-  color: white;
+  margin: 0 0 6px 0;
+  color: #EEEEEE; /* Light Gray */
+  line-height: 1.4;
 }
 
-/* Note URL */
 #noteList li small {
   font-size: 12px;
-  color: #ddd;
-  margin-bottom: 5px;
+  color: #EEEEEE; /* Light Gray */
+  margin-bottom: 6px;
+}
+
+#noteList li small a {
+  color: #00ADB5; /* Teal */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#noteList li small a:hover {
+  color: #393E46; /* Slate Gray */
+  text-decoration: underline;
 }
 
 /* Delete Button */
@@ -178,14 +183,61 @@ button.active {
   border: none;
   align-self: flex-end;
   padding: 5px;
+  transition: opacity 0.2s ease;
+}
+
+.delete-btn:hover {
+  opacity: 0.7;
 }
 
 .delete-btn img {
   width: 20px;
   height: 20px;
-}textarea {
+ 
+}
+
+/* Textarea */
+textarea {
   width: 100%;
   height: 100px;
-  white-space: pre-wrap; /* Preserves line breaks and spacing */
-  font-family: monospace; /* Optional: improves readability for structured text */
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+  background-color: #393E46; /* Slate Gray */
+  color: #EEEEEE; /* Light Gray */
+  border: 1px solid #00ADB5; /* Teal */
+  padding: 10px;
+
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+/* Glow animation */
+@keyframes rotateBorder {
+  0% {
+    box-shadow: 0 0 5px #00ADB5, 0 0 7px #00ADB5, 0 0 9px #00ADB5; /* Teal glow */
+  }
+  50% {
+    box-shadow: 0 0 11px #FF6F61, 0 0 13px #FF6F61, 0 0 15px #FF6F61; /* Coral glow */
+  }
+  100% {
+    box-shadow: 0 0 5px #00ADB5, 0 0 7px #00ADB5, 0 0 9px #00ADB5; /* Back to teal */
+  }
+}
+
+/* Apply glow when loading */
+.note-input.loading-glow {
+  animation: glow 1.5s ease-in-out infinite;
+}
+/* Add this to your existing CSS */
+
+button.loading {
+  position: relative;
+  background-color: #393E46; /* Slate Gray */
+  border: 2px solid;
+  animation: rotateBorder 1.5s linear infinite;
+  cursor: not-allowed;
+}
+
+button.loading:hover {
+  background-color: #393E46; /* Keep Slate Gray during loading */
+  transform: none; /* Disable hover effect during loading */
 }
