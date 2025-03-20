@@ -1,5 +1,5 @@
 // API Key (for now, replace with secure storage in production)
-const API_KEY = "AIzaSyAFy1PE-NhZsIslFeRTvQwPN1XcjdQdAF8"; 
+const API_KEY =<Enter_your_api_key>;//enter your api key
 
 async function fetchAIResponse(promptText) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
